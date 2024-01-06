@@ -8,7 +8,6 @@ mod state;
 mod text;
 
 use edita_core::Command;
-use edita_core::Editor;
 use hirola::dom::node_ref::NodeRef;
 use hirola::dom::*;
 use hirola::prelude::*;

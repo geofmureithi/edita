@@ -4,7 +4,9 @@ use serde::Serialize;
 use wasm_bindgen::JsCast;
 use web_sys::{Element, HtmlImageElement};
 
-use crate::{Editor, EditorState, node::EditorNode};
+use edita_core::{Editor};
+
+use crate::{node::EditorNode, EditorState};
 
 pub struct ImageBlock;
 

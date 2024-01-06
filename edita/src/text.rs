@@ -1,10 +1,10 @@
-use edita_core::Block;
+use edita_core::{Block, Editor};
 use hirola::prelude::html;
 use serde::Serialize;
 use wasm_bindgen::JsCast;
 use web_sys::{Element, Node};
 
-use crate::{Editor, EditorState, node::EditorNode};
+use crate::{node::EditorNode, EditorState};
 
 pub struct TextNodeBlock;
 
