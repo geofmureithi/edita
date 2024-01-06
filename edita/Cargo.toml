@@ -1,0 +1,40 @@
+[package]
+name = "edita"
+version = "0.1.0"
+edition = "2021"
+authors = ["Geoffrey Mureithi <mureithinjuguna@gmail.com>"]
+description = "edita is a simple block html-based editor built with rust"
+repository = "https://github.com/geofmureithi/edita"
+documentation = "https://docs.rs/edita"
+readme = "../README.md"
+license = "MIT OR Apache-2.0"
+keywords = ["edita", "tiptap", "prose-mirror", "wasm", "wysiwyg"]
+categories = ["text-editors"]
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+hirola = "0.4"
+console_error_panic_hook = "0.1.7"
+web-sys = { version = "0.3", features = [
+    "MutationObserver",
+    "MutationObserverInit",
+    "MutationRecord",
+    "CharacterData",
+    "Selection",
+    "Range",
+    "CssFontFaceRule",
+    "CssStyleDeclaration",
+    "NodeList",
+    "HtmlImageElement",
+] }
+js-sys = "0.3"
+wasm-bindgen = "0.2"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+edita-core = { path = "../edita-core" }
+log = "0.4.6"
+wasm-logger = "0.2.0"
