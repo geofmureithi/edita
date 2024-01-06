@@ -1,0 +1,16 @@
+[package]
+name = "edita-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["Geoffrey Mureithi <mureithinjuguna@gmail.com>"]
+description = "edita-core is a core rust library for building headless block editors"
+repository = "https://github.com/geofmureithi/edita"
+documentation = "https://docs.rs/edita"
+readme = "../README.md"
+license = "MIT OR Apache-2.0"
+keywords = ["edita", "tiptap", "prose-mirror", "wasm", "wysiwyg"]
+categories = ["text-editors"]
+
+[lib]
+
+
