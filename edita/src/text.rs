@@ -4,7 +4,7 @@ use serde::Serialize;
 use wasm_bindgen::JsCast;
 use web_sys::{Element, Node};
 
-use crate::{node::EditorNode, EditorState};
+use crate::{nodes::EditorNode, EditorState};
 
 pub struct TextNodeBlock;
 
@@ -34,7 +34,7 @@ impl Block for TextNodeBlock {
     }
 }
 
-impl crate::node::Node for TextNode {
+impl crate::nodes::Node for TextNode {
     fn render(&self) -> hirola::dom::Dom {
         html! { <>{&self.text}</> }
     }
@@ -70,7 +70,7 @@ pub struct Bold {
     text: String,
 }
 
-impl crate::node::Node for Bold {
+impl crate::nodes::Node for Bold {
     fn render(&self) -> hirola::dom::Dom {
         html! { <b>{&self.text}</b> }
     }
@@ -106,7 +106,7 @@ pub struct Italic {
     text: String,
 }
 
-impl crate::node::Node for Italic {
+impl crate::nodes::Node for Italic {
     fn render(&self) -> hirola::dom::Dom {
         html! { <em>{&self.text}</em> }
     }
@@ -142,7 +142,7 @@ pub struct InlineCode {
     text: String,
 }
 
-impl crate::node::Node for InlineCode {
+impl crate::nodes::Node for InlineCode {
     fn render(&self) -> hirola::dom::Dom {
         html! { <code>{&self.text}</code> }
     }

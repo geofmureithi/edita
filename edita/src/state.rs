@@ -4,7 +4,7 @@ use hirola::{
     signal::Mutable,
 };
 
-use crate::node::Node;
+use crate::nodes::Node;
 
 // Editor state, representing the current state of the editor
 #[derive(Clone)]

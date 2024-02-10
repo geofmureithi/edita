@@ -6,7 +6,7 @@ use web_sys::{Element, HtmlImageElement};
 
 use edita_core::{Editor};
 
-use crate::{node::EditorNode, EditorState};
+use crate::{nodes::EditorNode, EditorState};
 
 pub struct ImageBlock;
 
@@ -45,7 +45,7 @@ pub struct Image {
     pub alt: String,
 }
 
-impl crate::node::Node for Image {
+impl crate::nodes::Node for Image {
     fn render(&self) -> hirola::dom::Dom {
         use hirola::prelude::DefaultAttrStr;
         use hirola::prelude::DefaultAttributeEffect;

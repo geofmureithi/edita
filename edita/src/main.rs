@@ -2,7 +2,7 @@ mod commands;
 mod editor;
 mod heading;
 mod image;
-mod node;
+mod nodes;
 mod paragraph;
 mod state;
 mod text;
@@ -20,7 +20,7 @@ use crate::editor::EditorExt;
 use crate::heading::HeaderBlock;
 use crate::image::Image;
 use crate::image::ImageBlock;
-use crate::node::Node;
+use crate::blocks::Node;
 use crate::paragraph::Paragraph;
 use crate::paragraph::ParagraphBlock;
 use crate::state::EditorState;
@@ -75,25 +75,29 @@ fn app() -> Dom {
     html! {
         <div id="holder">
             <div id="menubar">
-                <button on:click=state.callback_with(|state, _| HeaderBlock.execute(&mut state.clone()))>
-                    "H"
-                </button>
-                <button on:click=state.callback_with(|state, _| ParagraphBlock.execute(&mut state.clone()))>
-                    "P"
-                </button>
+                <button on:click=state
+                    .callback_with(|state, _| HeaderBlock.execute(&mut state.clone()))>"H"</button>
+                <button on:click=state
+                    .callback_with(|state, _| {
+                        ParagraphBlock.execute(&mut state.clone())
+                    })>"P"</button>
                 // <button on:click=state.callback_with(|state, _| RemoveBold.execute(&mut state.clone()))>
                 //     "RB"
                 // </button>
-                <button on:click=state.callback_with(|state, _| state.add_node(Box::new(Image{
-                    src: "https://placehold.co/600x400".to_owned(),
-                    alt: "Placeholder".to_owned()
-                })))>
-                "I"
-            </button>
-            <div/>
-            <button on:click=state.callback_with(|state, _| MakeBold.execute(&mut state.clone()))>
-                    "B"
-                </button>
+                <button on:click=state
+                    .callback_with(|state, _| {
+                        state
+                            .add_node(
+                                Box::new(Image {
+                                    src: "https://placehold.co/600x400".to_owned(),
+                                    alt: "Placeholder".to_owned(),
+                                }),
+                            )
+                    })>"I"</button>
+                <div></div>
+
+                <button on:click=state
+                    .callback_with(|state, _| MakeBold.execute(&mut state.clone()))>"B"</button>
             </div>
             <div bind:ref=node use:future=fut use:future=sig contenteditable="true" class="prose">
                 <h1>"A simple Editor"</h1>

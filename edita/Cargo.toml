@@ -1,5 +1,5 @@
 [package]
-name = "edita"
+name = "edita-hirola"
 version = "0.1.0"
 edition = "2021"
 authors = ["Geoffrey Mureithi <mureithinjuguna@gmail.com>"]
@@ -13,7 +13,6 @@ categories = ["text-editors"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]
-name = "edita_export" 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
@@ -36,6 +35,6 @@ js-sys = "0.3"
 wasm-bindgen = "0.2"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
-edita-core = { path = "../edita-core", version = "0.1.0"}
+edita-core = { path = "../edita-core", version = "0.1.0" }
 log = "0.4.6"
 wasm-logger = "0.2.0"

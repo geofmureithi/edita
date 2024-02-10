@@ -10,7 +10,7 @@ use serde::Serialize;
 use wasm_bindgen::JsCast;
 use web_sys::HtmlElement;
 
-use crate::node::EditorNode;
+use crate::nodes::EditorNode;
 use crate::state::EditorState;
 
 pub struct HtmlBlock;
@@ -18,7 +18,7 @@ pub struct HtmlBlock;
 #[derive(Clone, Serialize, Debug)]
 pub struct HtmlNode(String);
 
-impl crate::node::Node for HtmlNode {
+impl crate::nodes::Node for HtmlNode {
     fn render(&self) -> hirola::dom::Dom {
         html! { <div data-node-atom="true" contenteditable="false" x:html=self.0.as_str()></div> }
     }

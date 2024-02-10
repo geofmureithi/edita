@@ -37,7 +37,11 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "212d0f5754cb6769937f4501cc0e67f4f4483c8d2c3e1e922ee9edbe4ab4c7c0"
 
 [[package]]
-name = "edita"
+name = "edita-core"
+version = "0.1.0"
+
+[[package]]
+name = "edita-hirola"
 version = "0.1.0"
 dependencies = [
  "console_error_panic_hook",
@@ -51,10 +55,6 @@ dependencies = [
  "wasm-logger",
  "web-sys",
 ]
-
-[[package]]
-name = "edita-core"
-version = "0.1.0"
 
 [[package]]
 name = "futures-channel"

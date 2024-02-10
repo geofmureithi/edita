@@ -5,7 +5,7 @@ use wasm_bindgen::JsCast;
 use web_sys::Element;
 
 use crate::{
-    node::{EditorNode, Node},
+    nodes::{EditorNode, Node},
     state::EditorState,
 };
 
@@ -17,12 +17,12 @@ pub struct Paragraph {
 impl Node for Paragraph {
     fn render(&self) -> Dom {
         html! {
-            <p data-ph="A paragraph goes here">
-                {for element in &self.elements {
-                    element.render()
-                }}
-            </p>
-        }
+        <p data-ph="A paragraph goes here">
+            {for element in &self.elements {
+                element.render()
+            }}
+        </p>
+    }
     }
 }
 

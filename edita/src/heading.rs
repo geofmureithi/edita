@@ -4,7 +4,7 @@ use serde::Serialize;
 use wasm_bindgen::JsCast;
 use web_sys::Element;
 
-use crate::{node::EditorNode, state::EditorState};
+use crate::{nodes::EditorNode, state::EditorState};
 
 #[derive(Clone, Serialize, Debug)]
 pub struct Heading {
@@ -21,7 +21,7 @@ impl Default for Heading {
     }
 }
 
-impl crate::node::Node for Heading {
+impl crate::nodes::Node for Heading {
     fn render(&self) -> Dom {
         html! { <h1 data-ph="Heading">{self.text.clone()}</h1> }
     }
