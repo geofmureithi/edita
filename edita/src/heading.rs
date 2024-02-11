@@ -69,6 +69,6 @@ impl Block for HeaderBlock {
 
 impl Command<EditorState> for HeaderBlock {
     fn execute(&self, state: &mut EditorState) {
-        state.add_node(Box::<Heading>::default())
+        state.add_node(Heading::default())
     }
 }

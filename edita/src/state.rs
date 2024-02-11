@@ -1,3 +1,4 @@
+use edita_core::Command;
 use hirola::{
     dom::node_ref::NodeRef,
     prelude::{Callback, GenericNode},
@@ -26,7 +27,7 @@ impl EditorState {
             notify: Mutable::new(()),
         }
     }
-    pub fn add_node(&self, node: Box<dyn Node>) {
+    pub fn add_node<N: Node>(&self, node: N) {
         self.node.get().append_render(node.render());
     }
 
@@ -34,9 +35,14 @@ impl EditorState {
         &self.node
     }
 
+    pub fn execute<C: Command<Self>>(&self, cmd: C) {
+        cmd.execute(&mut self.clone())
+    }
+
     pub fn notify(&self) {
         self.notify.replace(())
     }
+
 }
 
 impl Callback<web_sys::Event> for EditorState {}

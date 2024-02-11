@@ -1,30 +1,12 @@
-mod commands;
-mod editor;
-mod heading;
-mod image;
-mod nodes;
-mod paragraph;
-mod state;
-mod text;
-
-use edita_core::Command;
+use edita::core::Command;
+use edita::core::*;
+use edita::*;
 use hirola::dom::node_ref::NodeRef;
 use hirola::dom::*;
 use hirola::prelude::*;
 use hirola::signal::SignalExt;
 use wasm_bindgen::closure::Closure;
 use wasm_bindgen::JsCast;
-
-use crate::commands::bold::MakeBold;
-use crate::editor::EditorExt;
-use crate::heading::HeaderBlock;
-use crate::image::Image;
-use crate::image::ImageBlock;
-use crate::blocks::Node;
-use crate::paragraph::Paragraph;
-use crate::paragraph::ParagraphBlock;
-use crate::state::EditorState;
-use crate::text::{BoldBlock, InlineCodeBlock, ItalicBlock, TextNodeBlock};
 
 fn main() {
     wasm_logger::init(wasm_logger::Config::default());
@@ -38,7 +20,7 @@ fn app() -> Dom {
 
     let notifier = state.clone();
 
-    let mut editor = edita_core::Editor::new(state.clone());
+    let mut editor = Editor::new(state.clone());
     editor.add_block(HeaderBlock);
     editor.add_block(ParagraphBlock);
     editor.add_block(TextNodeBlock);
@@ -76,11 +58,9 @@ fn app() -> Dom {
         <div id="holder">
             <div id="menubar">
                 <button on:click=state
-                    .callback_with(|state, _| HeaderBlock.execute(&mut state.clone()))>"H"</button>
+                    .callback_with(|state, _| state.execute(HeaderBlock))>"H"</button>
                 <button on:click=state
-                    .callback_with(|state, _| {
-                        ParagraphBlock.execute(&mut state.clone())
-                    })>"P"</button>
+                    .callback_with(|state, _| state.execute(ParagraphBlock))>"P"</button>
                 // <button on:click=state.callback_with(|state, _| RemoveBold.execute(&mut state.clone()))>
                 //     "RB"
                 // </button>
@@ -88,16 +68,16 @@ fn app() -> Dom {
                     .callback_with(|state, _| {
                         state
                             .add_node(
-                                Box::new(Image {
+                                Image {
                                     src: "https://placehold.co/600x400".to_owned(),
                                     alt: "Placeholder".to_owned(),
-                                }),
+                                },
                             )
                     })>"I"</button>
                 <div></div>
 
                 <button on:click=state
-                    .callback_with(|state, _| MakeBold.execute(&mut state.clone()))>"B"</button>
+                    .callback_with(|state, _| state.execute(MakeBold))>"B"</button>
             </div>
             <div bind:ref=node use:future=fut use:future=sig contenteditable="true" class="prose">
                 <h1>"A simple Editor"</h1>
