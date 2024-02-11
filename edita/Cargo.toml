@@ -1,5 +1,5 @@
 [package]
-name = "edita-hirola"
+name = "edita"
 version = "0.1.0"
 edition = "2021"
 authors = ["Geoffrey Mureithi <mureithinjuguna@gmail.com>"]
