@@ -1,5 +1,5 @@
 /target
 /.cargo
 /.vscode
-/edita/dist/
+/examples/simple/dist/
 
