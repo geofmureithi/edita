@@ -1,0 +1,66 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <title>Edita Playground</title>
+    <script type="module">import init from '/simple-2dcbd087afce0c64.js';init('/simple-2dcbd087afce0c64_bg.wasm');</script>
+
+    <style>
+        [contenteditable=true] :empty:not(:focus):before {
+            content: attr(data-ph);
+            pointer-events: none;
+            cursor: text;
+            color: grey;
+        }
+
+        [contenteditable=true]:focus {
+            outline: 0px solid transparent;
+        }
+
+        #holder {
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 42rem;
+        }
+
+        #menubar {
+            display: grid;
+            grid-template-columns: repeat(8,minmax(0,1fr));
+            max-width: 21rem;
+            gap: 0.2em;
+        }
+
+    </style>
+
+
+<link rel="preload" href="/simple-2dcbd087afce0c64_bg.wasm" as="fetch" type="application/wasm" crossorigin="">
+<link rel="modulepreload" href="/simple-2dcbd087afce0c64.js"></head>
+
+<body>
+
+<script>(function () {
+    var protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    var url = protocol + '//' + window.location.host + '/_trunk/ws';
+    var poll_interval = 5000;
+    var reload_upon_connect = () => {
+        window.setTimeout(
+            () => {
+                // when we successfully reconnect, we'll force a
+                // reload (since we presumably lost connection to
+                // trunk due to it being killed, so it will have
+                // rebuilt on restart)
+                var ws = new WebSocket(url);
+                ws.onopen = () => window.location.reload();
+                ws.onclose = reload_upon_connect;
+            },
+            poll_interval);
+    };
+
+    var ws = new WebSocket(url);
+    ws.onmessage = (ev) => {
+        const msg = JSON.parse(ev.data);
+        if (msg.reload) {
+            window.location.reload();
+        }
+    };
+    ws.onclose = reload_upon_connect;
+})()
+</script></body></html>
