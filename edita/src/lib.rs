@@ -7,6 +7,8 @@ mod paragraph;
 mod state;
 mod text;
 
+pub use edita_core as core;
+
 pub use crate::commands::bold::MakeBold;
 pub use crate::editor::EditorExt;
 pub use crate::heading::HeaderBlock;

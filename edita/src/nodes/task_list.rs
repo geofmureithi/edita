@@ -7,10 +7,7 @@ use web_sys::{Element, Node};
 
 use crate::{nodes::EditorNode, EditorState};
 
-use super::{
-    list_item::{ListItem, ListItemBlock},
-    task_item::{TaskItem, TaskItemBlock},
-};
+use super::task_item::{TaskItem, TaskItemBlock};
 
 pub struct TaskListBlock;
 
@@ -37,7 +34,7 @@ impl Block for TaskListBlock {
         EditorNode::TaskList(TaskList {
             list: Object::entries(&node.child_nodes())
                 .into_iter()
-                .map(|item| TaskItem::parse(&TaskItemBlock, editor, item.dyn_ref().unwrap()))
+                .map(|item| TaskItemBlock::parse(&TaskItemBlock, editor, item.dyn_ref().unwrap()))
                 .map(|node| match node {
                     EditorNode::TaskItem(item) => Some(item),
                     _ => None,

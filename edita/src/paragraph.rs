@@ -63,6 +63,6 @@ impl Block for ParagraphBlock {
 
 impl Command<EditorState> for ParagraphBlock {
     fn execute(&self, state: &mut EditorState) {
-        state.add_node(Box::<Paragraph>::default())
+        state.add_node(Paragraph::default())
     }
 }
