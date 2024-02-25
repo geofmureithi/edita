@@ -7,12 +7,12 @@ use web_sys::Element;
 use crate::{nodes::EditorNode, state::EditorState};
 
 #[derive(Clone, Serialize, Debug)]
-pub struct Heading {
+pub struct Header {
     text: String,
     level: u8,
 }
 
-impl Default for Heading {
+impl Default for Header {
     fn default() -> Self {
         Self {
             text: String::default(),
@@ -21,7 +21,7 @@ impl Default for Heading {
     }
 }
 
-impl crate::nodes::Node for Heading {
+impl crate::nodes::Node for Header {
     fn render(&self) -> Dom {
         html! { <h1 data-ph="Heading">{self.text.clone()}</h1> }
     }
@@ -60,7 +60,7 @@ impl Block for HeaderBlock {
                 _ => 0, // Default level, or you could handle this case differently
             };
 
-            EditorNode::Heading(Heading { text, level })
+            EditorNode::Heading(Header { text, level })
         } else {
             unreachable!("No such header")
         }
@@ -69,6 +69,6 @@ impl Block for HeaderBlock {
 
 impl Command<EditorState> for HeaderBlock {
     fn execute(&self, state: &mut EditorState) {
-        state.add_node(Heading::default())
+        state.add_node(Header::default())
     }
 }

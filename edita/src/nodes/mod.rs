@@ -1,25 +1,40 @@
-pub mod block_quote;
+mod block_quote;
 mod bullet_list;
-pub mod list_item;
+mod heading;
+mod image;
+mod list_item;
 mod ordered_list;
+mod paragraph;
 mod task_item;
 mod task_list;
-
+mod text;
 use hirola::{dom::Dom, prelude::*};
 use serde::Serialize;
 
-use crate::{
-    nodes::block_quote::BlockQuote,
-    editor::HtmlNode,
-    heading::Heading,
+use crate::{editor::HtmlNode, nodes::block_quote::BlockQuote};
+
+pub use self::{
+    bullet_list::BulletList,
+    heading::Header,
     image::Image,
+    list_item::ListItem,
+    ordered_list::OrderedList,
     paragraph::Paragraph,
+    task_item::TaskItem,
+    task_list::TaskList,
     text::{Bold, InlineCode, Italic, TextNode},
 };
 
-use self::{
-    bullet_list::BulletList, list_item::ListItem, ordered_list::OrderedList, task_item::TaskItem,
-    task_list::TaskList,
+pub use self::{
+    bullet_list::BulletListBlock,
+    heading::HeaderBlock,
+    image::ImageBlock,
+    list_item::ListItemBlock,
+    ordered_list::OrderedListBlock,
+    paragraph::ParagraphBlock,
+    task_item::TaskItemBlock,
+    task_list::TaskListBlock,
+    text::{BoldBlock, InlineCodeBlock, ItalicBlock, TextNodeBlock},
 };
 
 pub trait Node {
@@ -32,7 +47,7 @@ pub enum EditorNode {
     Paragraph(Paragraph),
     Text(TextNode),
     Bold(Bold),
-    Heading(Heading),
+    Heading(Header),
     Italic(Italic),
     InlineCode(InlineCode),
     Image(Image),
